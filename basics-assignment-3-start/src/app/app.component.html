@@ -12,7 +12,7 @@
         class="btn btn-primary"
         (click)="onDisplayClick()"
       >Display Details</button>
-      <p [ngClass]="{'hide-display': displayToggle === false}">Details!!!!!!!!!! {{displayToggle}}</p>
+      <p *ngIf="displayToggle === true">Details!!!!!!!!!! {{displayToggle}}</p>
       <p 
         *ngFor="let click of numberOfClicks; let i = index"
         [ngClass]="{ five: i >= 5 }"
