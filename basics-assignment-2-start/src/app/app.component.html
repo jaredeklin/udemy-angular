@@ -6,6 +6,6 @@
 </ol>
 
 
-<input type="text" [(ngModel)]="username">
+<input type="text" [(ngModel)]="username" class="form-control">
 <p>{{ username }}</p>
-<button [disabled]="!username" (click)="onButtonClick()">button</button>
+<button class="btn btn-primary" [disabled]="!username" (click)="onButtonClick()">button</button>
