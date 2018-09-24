@@ -22,8 +22,8 @@
         (start)="onStart($event)"
       ></app-game-control>
       <hr>
-        <app-odd *ngFor="let odd of odds" [number]="odd"></app-odd>
-        <app-even *ngFor="let even of evens" [number]="even"></app-even>
+      <app-numbers *ngFor="let number of numbers" [number]="number"></app-numbers>
+      
     </div>
   </div>
 </div>
