@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project';
+  display: string;
+  // displayShoppingList: boolean = false;
+
+  onDisplayToggle(display: string) {
+    this.display = display;
+    // console.log(this.display)
+  }
 }
