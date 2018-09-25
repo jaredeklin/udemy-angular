@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project';
+  display: string = 'recipe'
+
+  onDisplayToggle(display: string) {
+    this.display = display;
+  }
 }
