@@ -6,10 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'project';
-  display = 'recipe';
+  numbers = [1, 2, 3, 4, 5];
+  onlyOdd = false;
 
-  onDisplayToggle(display: string) {
-    this.display = display;
-  }
+  value = 101;
 }
