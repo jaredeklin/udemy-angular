@@ -7,12 +7,15 @@
       <br><br>
       <ul class="list-group">
         <li
-          class="list-group-item">
+          class="list-group-item"
+          *ngFor="let number of numbers">
+          {{number}}
         </li>
       </ul>
-      <ng-template [ngIf]="onlyOdd">
+      <ng-template #odds [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
+      <p appBasicHighlight>style me with directive</p>
     </div>
   </div>
 </div>
