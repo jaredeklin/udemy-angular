@@ -17,6 +17,11 @@
       </ng-template>
       <p appBasicHighlight>style me with directive</p>
       <p appBetterHighlight>style me with better directive</p>
+      <div [ngSwitch]='value'>
+        <p *ngSwitchCase='1'>Value is 1</p>
+        <p *ngSwitchCase='10'>Value is 10</p>
+        <p *ngSwitchDefault>Value is default</p>
+      </div>
     </div>
   </div>
 </div>
