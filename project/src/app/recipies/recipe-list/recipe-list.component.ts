@@ -9,18 +9,11 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ["./recipe-list.component.css"]
 })
 export class RecipeListComponent implements OnInit {
-  @Output()
-  showDetail = new EventEmitter<Recipe>();
-
   recipes: Recipe[];
 
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipies();
-  }
-
-  showDetails(recipe: Recipe) {
-    this.showDetail.emit(recipe);
   }
 }
