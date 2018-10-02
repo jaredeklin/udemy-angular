@@ -10,8 +10,8 @@ export class ShoppingListService {
     new Ingredient('Milk', 2)
   ];
 
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+  addIngredients(ingredients: Ingredient[]) {
+    this.ingredients.push(...ingredients);
     this.ingredientsChanged.emit([...this.ingredients]);
   }
 

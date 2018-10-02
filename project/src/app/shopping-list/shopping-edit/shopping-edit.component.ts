@@ -18,7 +18,8 @@ export class ShoppingEditComponent implements OnInit {
   handleAddIngredient(name: string, amount: number) {
     const ingredient = new Ingredient(name, amount);
     // this.addIngredient.emit(ingredient);
-    this.shoppingListService.addIngredient(ingredient);
+    // this.shoppingListService.addIngredient(ingredient);
+    this.shoppingListService.addIngredients([ingredient]);
   }
 
 }
