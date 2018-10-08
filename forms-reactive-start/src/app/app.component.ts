@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,5 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  subscriptions = ['Basic', 'Advanced', 'Pro'];
-  defaultSubscription = 'Advanced';
-
-  onSubmit(form: NgForm) {
-    console.log(form.value);
-  }
+  genders = ['male', 'female'];
 }
