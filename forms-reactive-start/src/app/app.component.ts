@@ -24,10 +24,15 @@ export class AppComponent implements OnInit {
     });
 
     this.signupForm.statusChanges.subscribe((status) => console.log('status', status));
+
+    this.signupForm.patchValue({
+      username: 'Hottrod'
+    });
   }
 
   onSubmit() {
     console.log(this.signupForm.value);
+    this.signupForm.reset();
   }
 
   onAddHobby() {
