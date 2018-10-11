@@ -39,7 +39,11 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img src="" alt="" class="image-responsive">
+          <img
+            src="{{recipeForm.value.imageUrl}}"
+            alt="recipe image"
+            class="image-responsive"
+            style="height: 300px;">
         </div>
       </div>
       <div class="row">
@@ -69,7 +73,10 @@
             <input type="number" class="form-control" formControlName="amount">
           </div>
           <div class="col-xs-2">
-            <button class="btn btn-danger">X</button>
+            <button
+            class="btn btn-danger"
+            type="button"
+            (click)="onDeleteIngredient(i)">X</button>
           </div>
         </div>
             <div class="row">
