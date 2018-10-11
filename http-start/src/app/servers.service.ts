@@ -14,4 +14,8 @@ export class ServersService {
       headers: headers
     });
   }
+
+  getServers() {
+    return this.http.get('https://ngpractice-c71e6.firebaseio.com/data.json');
+  }
 }

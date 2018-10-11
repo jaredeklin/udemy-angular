@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServersService } from './servers.service';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   servers = [
     {
       name: 'Testserver',
@@ -22,6 +23,10 @@ export class AppComponent {
 
   constructor(private serverService: ServersService) {}
 
+  ngOnInit() {
+    // this.getServers()
+  }
+
   onAddServer(name: string) {
     this.servers.push({
       name: name,
@@ -30,10 +35,26 @@ export class AppComponent {
     });
   }
 
+  onGetServers() {
+    // const servers = this.serverService.getServers();
+    // console.log(servers)
+    this.serverService.getServers()
+      .subscribe(
+        (response: Response) => {
+          const data = response.json();
+          console.log(data);
+        },
+        (error) => console.log(error)
+      );
+  }
+
   onSave() {
     this.serverService.storeServers(this.servers)
       .subscribe(
-        (response) => console.log(response),
+        (response: Response) => {
+          const data = response.json();
+          console.log(data);
+        },
         (error) => console.log(error)
       );
   }
