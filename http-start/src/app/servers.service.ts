@@ -34,4 +34,9 @@ export class ServersService {
         return Observable.throw('Error! something went wrong');
       });
   }
+
+  getAppName() {
+    return this.http.get("https://ngpractice-c71e6.firebaseio.com/appName.json")
+      .map((response: Response) => response.json());
+  }
 }
