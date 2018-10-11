@@ -40,10 +40,7 @@ export class AppComponent implements OnInit {
     // console.log(servers)
     this.serverService.getServers()
       .subscribe(
-        (response: Response) => {
-          const data = response.json();
-          console.log(data);
-        },
+        (servers: any[]) => this.servers = servers,
         (error) => console.log(error)
       );
   }
