@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'project';
-  // display = 'recipe';
+export class AppComponent implements OnInit {
+  title = 'Recipe Book';
 
-  // onDisplayToggle(display: string) {
-  //   this.display = display;
-  // }
+  ngOnInit() {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyCpf3oSsn9jWj-z-YRa7qwuQUVI8Ch0G1I',
+      authDomain: 'recipe-book-9dde2.firebaseapp.com',
+    });
+  }
 }
