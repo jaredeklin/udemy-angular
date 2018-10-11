@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -9,8 +11,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class RecipeEditComponent implements OnInit {
   id: number;
   edit = false;
+  recipeForm: FormGroup;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private recipeService: RecipeService) { }
 
   ngOnInit() {
     this.route.params
@@ -18,6 +22,41 @@ export class RecipeEditComponent implements OnInit {
         this.id = params.id;
         this.edit = params.id ? true : false;
       });
+    this.initForm();
   }
 
+  private initForm () {
+    let recipeName = '';
+    let recipeImage = '';
+    let recipeDescription = '';
+    let recipeIngredients = new FormArray([]);
+
+    if (this.edit) {
+      const recipe = this.recipeService.getRecipe(this.id);
+      recipeName = recipe.name;
+      recipeImage = recipe.imageUrl;
+      recipeDescription = recipe.description;
+      if (recipe.ingredients) {
+        for (let ingredient of recipe.ingredients) {
+          recipeIngredients.push(
+            new FormGroup({
+              'name': new FormControl(ingredient.name),
+              'amount': new FormControl(ingredient.amount)
+            })
+          )
+        }
+      }
+    }
+
+    this.recipeForm = new FormGroup({
+      'name': new FormControl(recipeName),
+      'imageUrl': new FormControl(recipeImage),
+      'description': new FormControl(recipeDescription),
+      'ingredients': recipeIngredients
+    });
+  }
+
+  onSubmit() {
+    console.log(this.recipeForm)
+  }
 }
