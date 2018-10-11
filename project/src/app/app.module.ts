@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipiesStartComponent } from './recipies/recipies-start/recipies-start.component';
 import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.component';
 import { HttpModule } from '@angular/http';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { HttpModule } from '@angular/http';
     DropdownDirective,
     RecipiesStartComponent,
     RecipeEditComponent,
+    SignupComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
