@@ -1,25 +1,61 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
-  // @Output() addIngredient = new EventEmitter<Ingredient>();
+export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f') slForm: NgForm;
+  subscription: Subscription;
+  editMode = false;
+  editedItemId: number;
+  editedItem: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
+    this.subscription = this.shoppingListService.startedEditing.subscribe(
+      (id: number) => {
+        this.editedItemId = id;
+        this.editMode = true;
+        this.editedItem = this.shoppingListService.getIngredient(id);
+        this.slForm.setValue({
+          name: this.editedItem.name,
+          amount: this.editedItem.amount
+        });
+    });
   }
 
-  handleAddIngredient(name: string, amount: number) {
+  handleAddIngredient(form: NgForm) {
+    const { name, amount } = form.value;
     const ingredient = new Ingredient(name, amount);
-    // this.addIngredient.emit(ingredient);
-    // this.shoppingListService.addIngredient(ingredient);
-    this.shoppingListService.addIngredients([ingredient]);
+
+    if (this.editMode) {
+      this.shoppingListService.updateIngredients(this.editedItemId, ingredient);
+    } else {
+      this.shoppingListService.addIngredients([ingredient]);
+    }
+
+    this.onClear();
+  }
+
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
+  }
+
+  onDelete() {
+    this.shoppingListService.deleteIngredient(this.editedItemId);
+    this.onClear();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
