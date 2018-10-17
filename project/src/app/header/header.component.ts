@@ -29,4 +29,8 @@ export class HeaderComponent implements OnInit {
       .getRecipes();
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
 }
