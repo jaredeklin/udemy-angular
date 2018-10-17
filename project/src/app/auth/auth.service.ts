@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
 
@@ -44,5 +44,6 @@ export class AuthService {
   logout() {
     firebase.auth().signOut();
     this.token = undefined;
+    this.router.navigate(['/']);
   }
 }
